@@ -43,7 +43,7 @@ loadBtn.addEventListener("click", async (event) => {
         // const response = await fetch("https://jsonplaceholder.typicode.com/postz"); // проверка 404
         if (response.ok) {
             allPosts = await response.json();
-            status.textContent = `Данные успешно загружены`;
+            status.textContent = `Данные успешно загружены. Код ответа: ${response.status}`;
             render(allPosts);
         }
         else {
@@ -85,7 +85,7 @@ form.addEventListener("submit", async (event) => {
             const data = await response.json();
             allPosts = [];
             allPosts.push(data);
-            status.textContent = `Данные успешно отправлены`;
+            status.textContent = `Данные успешно отправлены. Код ответа: ${response.status}`;
             render(allPosts);
         }
         else {

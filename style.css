@@ -58,9 +58,16 @@ textarea {
 
 #status {
     font-weight: bold;
-    color: darkgrey;
     margin: 15px 0;
     font-size: 16px;
+}
+
+.ok {
+    color: lime;
+}
+
+.error {
+    color: red;
 }
 
 ul {

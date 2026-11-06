@@ -45,13 +45,13 @@ loadBtn.addEventListener("click", async (event) => {
         // const response = await fetch("https://jsonplaceholder.typicode.com/postz"); // проверка 404
         if (response.ok) {
             allPosts = await response.json();
-            status.textContent = `Данные успешно загружены. Код ответа: ${response.status}`;
+            status.textContent = `Данные успешно загружены. Код ответа HTTP: ${response.status}`;
             status.classList.add("ok")
             status.classList.remove("error")
             render(allPosts);
         }
         else {
-            status.textContent = `Не удалось загрузить данные. Код ответа: ${response.status}`;
+            status.textContent = `Не удалось загрузить данные. Код ответа HTTP: ${response.status}`;
             status.classList.remove("ok")
             status.classList.add("error")
         }
@@ -97,13 +97,13 @@ form.addEventListener("submit", async (event) => {
             const data = await response.json();
             allPosts = [];
             allPosts.push(data);
-            status.textContent = `Данные успешно отправлены. Код ответа: ${response.status}`;
+            status.textContent = `Данные успешно отправлены. Код ответа HTTP: ${response.status}`;
             status.classList.add("ok")
             status.classList.remove("error")
             render(allPosts);
         }
         else {
-            status.textContent = `Не удалось загрузить данные. Код ответа: ${response.status}`;
+            status.textContent = `Не удалось загрузить данные. Код ответа HTTP: ${response.status}`;
             status.classList.remove("ok")
             status.classList.add("error")
         }

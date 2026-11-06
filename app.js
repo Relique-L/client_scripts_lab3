@@ -38,19 +38,27 @@ loadBtn.addEventListener("click", async (event) => {
     event.preventDefault();
     loadBtn.disabled = true;
     status.textContent = "Загрузка...";
+    status.classList.remove("ok")
+    status.classList.remove("error")
     try {
         const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
         // const response = await fetch("https://jsonplaceholder.typicode.com/postz"); // проверка 404
         if (response.ok) {
             allPosts = await response.json();
             status.textContent = `Данные успешно загружены. Код ответа: ${response.status}`;
+            status.classList.add("ok")
+            status.classList.remove("error")
             render(allPosts);
         }
         else {
             status.textContent = `Не удалось загрузить данные. Код ответа: ${response.status}`;
+            status.classList.remove("ok")
+            status.classList.add("error")
         }
     } catch (error) {
         status.textContent = `Сетевая ошибка: ${error.message}`;
+        status.classList.remove("ok")
+        status.classList.add("error")
     }
     finally {
         loadBtn.disabled = false;
@@ -64,6 +72,8 @@ form.addEventListener("submit", async (event) => {
 
     if (title === "" || body === "") {
         status.textContent = "Заголовок и текст публикации не могут быть пустыми";
+        status.classList.remove("ok")
+        status.classList.add("error")
         return;
     }
 
@@ -75,6 +85,8 @@ form.addEventListener("submit", async (event) => {
 
     submitBtn.disabled = true;
     status.textContent = "Отправка...";
+    status.classList.remove("ok")
+    status.classList.remove("error")
     try {
         const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
             method: "POST",
@@ -86,13 +98,19 @@ form.addEventListener("submit", async (event) => {
             allPosts = [];
             allPosts.push(data);
             status.textContent = `Данные успешно отправлены. Код ответа: ${response.status}`;
+            status.classList.add("ok")
+            status.classList.remove("error")
             render(allPosts);
         }
         else {
             status.textContent = `Не удалось загрузить данные. Код ответа: ${response.status}`;
+            status.classList.remove("ok")
+            status.classList.add("error")
         }
     } catch (error) {
         status.textContent = `Сетевая ошибка: ${error.message}`;
+        status.classList.remove("ok")
+        status.classList.add("error")
     } finally {
         submitBtn.disabled = false;
     }
